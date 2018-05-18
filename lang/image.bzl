@@ -33,23 +33,23 @@ def _runfiles_dir(ctx):
     # /app/bar/baz/blah.runfiles
     return _binary_name(ctx) + ".runfiles"
 
-# The directory relative to which all ".short_path" paths are relative.
+    # The directory relative to which all ".short_path" paths are relative.
 
 def _reference_dir(ctx):
     # For @foo//bar/baz:blah this would translate to
     # /app/bar/baz/blah.runfiles/foo
     return "/".join([_runfiles_dir(ctx), ctx.workspace_name])
 
-# The special "external" directory which is an alternate way of accessing
-# other repositories.
+    # The special "external" directory which is an alternate way of accessing
+    # other repositories.
 
 def _external_dir(ctx):
     # For @foo//bar/baz:blah this would translate to
     # /app/bar/baz/blah.runfiles/foo/external
     return "/".join([_reference_dir(ctx), "external"])
 
-# The final location that this file needs to exist for the foo_binary target to
-# properly execute.
+    # The final location that this file needs to exist for the foo_binary target to
+    # properly execute.
 
 def _final_emptyfile_path(ctx, name):
     if not name.startswith("external/"):
@@ -67,14 +67,14 @@ def _final_emptyfile_path(ctx, name):
 
     return "/".join([_runfiles_dir(ctx), name[len("external/"):]])
 
-# The final location that this file needs to exist for the foo_binary target to
-# properly execute.
+    # The final location that this file needs to exist for the foo_binary target to
+    # properly execute.
 
 def _final_file_path(ctx, f):
     return "/".join([_reference_dir(ctx), f.short_path])
 
-# The foo_binary independent location in which we store a particular dependency's
-# file such that it can be shared.
+    # The foo_binary independent location in which we store a particular dependency's
+    # file such that it can be shared.
 
 def _layer_emptyfile_path(ctx, name):
     if not name.startswith("external/"):
@@ -92,8 +92,8 @@ def _layer_emptyfile_path(ctx, name):
 
     return "/".join([ctx.attr.directory, name[len("external/"):]])
 
-# The foo_binary independent location in which we store a particular dependency's
-# file such that it can be shared.
+    # The foo_binary independent location in which we store a particular dependency's
+    # file such that it can be shared.
 
 def layer_file_path(ctx, f):
     return "/".join([ctx.attr.directory, ctx.workspace_name, f.short_path])
